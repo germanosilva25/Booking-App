@@ -14,4 +14,3 @@ const usuarios = [
 export const Usuarios = function(){
     return usuarios;
 }
-

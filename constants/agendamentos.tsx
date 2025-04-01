@@ -8,3 +8,7 @@ const agendamentos = [
     {id_agendamento: 1, data: "20/06/2025", hora: "10:00", nome_cliente: "Moises Carmo", nome_profissional: "Jonhy Mark"},
     {id_agendamento: 1, data: "31/05/2025", hora: "08:00", nome_cliente: "Hudson Menezes", nome_profissional: "Jonhy Mark"},
 ]
+
+export const Agendamentos = function(){
+    return agendamentos;
+}
