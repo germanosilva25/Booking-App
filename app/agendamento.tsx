@@ -1,5 +1,5 @@
 
-import { Servicos } from '@/constants/servicos';
+import { Agendamentos } from '@/constants/agendamentos';
 import { Link } from 'expo-router';
 import { Image, StyleSheet, Platform, Text, FlatList, View, Pressable } from 'react-native';
 
@@ -12,12 +12,15 @@ export default function HomeScreen() {
      
       <Text style={styles.title}>Perfis de Clientes</Text>
       <FlatList
-        data={Servicos()}
-        keyExtractor={(item) => item.id_servico.toString()}
+        data={Agendamentos()}
+        keyExtractor={(item) => item.id_agendamento.toString()}
         renderItem={({ item }) => (
           <View style={styles.card}>
-            <Text>Id: {item.id_servico}</Text>
-            <Text>Nome: {item.nome_servico}</Text>
+            <Text>Id: {item.id_agendamento}</Text>
+            <Text>Data: {item.data}</Text>
+            <Text>Hora: {item.hora}</Text>
+            <Text>Nome do Cliente: {item.nome_cliente}</Text>
+            <Text>Nome do profissional: {item.nome_profissional}</Text>
           </View>
         )}
       />
