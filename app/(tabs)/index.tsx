@@ -1,43 +1,34 @@
-import { Usuarios } from '@/constants/usuario';
-import { Image, StyleSheet, Platform, Text, FlatList, View, Pressable } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { Link } from 'expo-router';
 
 export default function HomeScreen() {
   return (
-    
     <View style={styles.container}>
-      <View style={{flexDirection: 'row', marginBottom: 20, padding: 10}}>
-        
-        <View style={{width: '33%', backgroundColor: 'gray'}}>
-
-          <Link href="/servicos" asChild>
-            <Pressable>
-              <Text>Serviços</Text>
-            </Pressable>
-          </Link>
-
-        </View>
-
-        <View style={{width: '33%', backgroundColor: 'gray'}}>
-          <Link href="/agendamento" asChild>
-            <Pressable>
-              <Text>Agendamento</Text>
-            </Pressable>
-          </Link>
-        </View>
-
-        <View style={{width: '33%', backgroundColor: 'gray'}}>
-          <Link href="/usuarios" asChild>
-            <Pressable>
-              <Text>Usuários</Text>
-            </Pressable>
-          </Link>
-        </View>
-        
+      <View style={styles.row}>
+        <MenuItem href="/servicos" image={require('@/assets/images/servicos_agendamento.png')} label="Serviços" />
+        <MenuItem href="/agendamento" image={require('@/assets/images/agandamento_agendamento.png')} label="Agendamento" />
+        <MenuItem href="/usuarios" image={require('@/assets/images/usuarios_agendamento.png')} label="Usuários" />
       </View>
+      <View style={styles.row}>
+        <MenuItem href="/agendas" image={require('@/assets/images/agenda_agendamento.png')} label="Agendas" />
+        <MenuItem href="/clientes" image={require('@/assets/images/agendamento_cliente.png')} label="Clientes" />
+        <MenuItem href="/profissionais" image={require('@/assets/images/agendamento_profissional.png')} label="Profissionais" />
+        {/* Adicione mais itens aqui, se necessário */}
+      </View>
+    </View>
+  );
+}
 
-     
-      
+function MenuItem({ href, image, label }) {
+  return (
+    <View style={styles.menuItem}>
+      <Link href={href} asChild>
+        <Pressable style={styles.button}>
+          <Image source={image} style={styles.image} />
+          <Text style={styles.label}>{label}</Text>
+        </Pressable>
+      </Link>
     </View>
   );
 }
@@ -46,26 +37,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#f8f8f8',
+    marginTop: 40,
   },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  menuItem: {
+    
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    width: '30%',
+    padding: 10,
+  },
+  button: {
+    alignItems: 'center',
+  },
+  image: {
+    width: 80,
+    height: 80,
     marginBottom: 10,
   },
-  card: {
-    backgroundColor: 'white',
-    padding: 15,
-    marginVertical: 8,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  nome: {
-    fontSize: 18,
+  label: {
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });

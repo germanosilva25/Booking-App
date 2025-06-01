@@ -7,9 +7,9 @@ import { Image, StyleSheet, Platform, Text, FlatList, View, Pressable } from 're
 
 export default function HomeScreen() {
   return (
-    
+
     <View style={styles.container}>
-     
+
       <Text style={styles.title}>Perfis de Clientes</Text>
       <FlatList
         data={Servicos()}
@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
     padding: 15,
     marginVertical: 8,
     borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    boxShadowColor: '#000',
+    boxShadowOffset: { width: 0, height: 2 },
+    boxShadowOpacity: 0.1,
+    boxShadowRadius: 4,
     elevation: 3,
   },
   nome: {

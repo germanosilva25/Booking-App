@@ -6,12 +6,10 @@ import { Link } from 'expo-router';
 // import { Usuarios } from '@/constants/usuario';
 
 
-type Agendamento = {
-  id_agendamento: number;
+type User = {
   id_usuario: number;
-  id_agenda: number;
-  id_servico: number;
-  data: string;
+  id_grupo: number;
+  data_de_nascimento: string;
   nome_usuario: string;
   nome_grupo: string;
   email: string;
@@ -25,43 +23,41 @@ type Agendamento = {
 //   nome_grupo: string;
 // };
 
-export default function ListaAgendamentos() {
-  const [users, setUsers] = useState<Agendamento[] | null>(null);
+export default function ListaUsuarios() {
+  const [users, setUsers] = useState<User[] | null>(null);
   useEffect(() => {
 
-    const getAgendamentos = async () => {
+    const getUsuarios = async () => {
       try {
-        const response = await fetch('http://localhost/agendamentos/get-agendamentos');
+        const response = await fetch('http://localhost/agendamentos/usuarios-clientes');
+        // const response = await fetch('https://novo.mobi-rio.rio.br/get-avisos');
         const data = await response.json();
-        setUsers(data.agendamentos);
-        console.error('users:', data.agendamentos);
+        setUsers(data.usuarios);
+        console.error('users:', data.usuarios);
       } catch (error) {
         console.error('Erro ao buscar usuários:', error);
       }
     };
 
-    getAgendamentos();
+    getUsuarios();
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Agendamentos do dia</Text>
+      <Text style={styles.title}>Clientes</Text>
 
-      <Link href="criarAgendamento" asChild>
-        <Text>Agendar</Text>
+      <Link href="CadastrarUsuario" asChild>
+        <Text>Cadastrar Usuário</Text>
       </Link>
 
       <FlatList
         data={users || []}
-        keyExtractor={(item) => item.id_agendamento.toString()}
+        keyExtractor={(item) => item.id_usuario.toString()}
         renderItem={({ item }) => (
           <View style={styles.card}>
-            <Text>Id: {item.id_agendamento}</Text>
-            <Text>Cliente: {item.usuario.nome_usuario}</Text>
-            <Text>Profissional: {item.agenda.usuario.nome_usuario}</Text>
-            <Text>Servico: {item.servico.nome_servico}</Text>
-            <Text>Data: {item.data}</Text>
-            <Text>Hora: {item.agenda.horario}</Text>
+            <Text>Id: {item.id_usuario}</Text>
+            <Text>Nome: {item.nome_usuario}</Text>
+            <Text>Nome do grupo: {item.nome_grupo}</Text>
           </View>
         )}
       />

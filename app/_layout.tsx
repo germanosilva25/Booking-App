@@ -7,6 +7,10 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import Usuarios from './usuarios';
+import ListaUsuarios from './usuarios';
+import ListaAgendamentos from './agendamento';
+import FormularioAgendamento from './criarAgendamento';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -32,6 +36,21 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
+        <Stack
+          name="usuarios"
+          component={ListaUsuarios} // 👈 aqui!
+          options={{ headerShown: true, title: "Usuários" }}
+        />
+        <Stack
+          name="agendamentos"
+          component={ListaAgendamentos} // 👈 aqui!
+          options={{ headerShown: true, title: "Usuários" }}
+        />
+        <Stack
+          name="FormularioAgendamento"
+          component={FormularioAgendamento}
+          options={{ headerShown: true, title: 'Criando Agendamento' }}
+        />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
