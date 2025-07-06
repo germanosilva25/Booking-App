@@ -1,6 +1,6 @@
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-import { StyleSheet, Text, FlatList, View } from 'react-native';
+import { StyleSheet, Text, FlatList, View, Alert, Button } from 'react-native';
 import { useEffect, useState } from 'react';
 import { Link } from 'expo-router';
 // import { Usuarios } from '@/constants/usuario';
@@ -41,7 +41,7 @@ export default function ListaUsuarios() {
 
     getUsuarios();
   }, []);
-
+  //adicionar filter
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Usuários</Text>
@@ -58,10 +58,47 @@ export default function ListaUsuarios() {
             <Text>Id: {item.id_usuario}</Text>
             <Text>Nome: {item.nome_usuario}</Text>
             <Text>Nome do grupo: {item.nome_grupo}</Text>
+            <Button
+              title="Deletar"
+              color="red"
+              onPress={() => {
+                Alert.alert(
+                  'Confirmar Exclusão',
+                  'Tem certeza que deseja deletar este usuário?',
+                  [
+                    {
+                      text: 'Não',
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'Sim',
+                      onPress: () => {
+                        fetch(`http://localhost/agendamentos/deletar-usuario/${item.id_usuario}`, {
+                          method: 'get',
+                        })
+                          .then(response => {
+                            if (response.ok) {
+                              Alert.alert('Sucesso', 'Usuário deletado com sucesso!');
+                              // aqui você pode atualizar a lista, se necessário
+                            } else {
+                              Alert.alert('Erro', 'Falha ao deletar o usuário.');
+                            }
+                          })
+                          .catch(error => {
+                            Alert.alert('Erro', 'Erro ao conectar com o servidor.');
+                          });
+                      },
+                    },
+                  ],
+                  { cancelable: true }
+                );
+              }}
+            />
           </View>
         )}
       />
-    </View>
+
+    </View >
   );
 }
 
@@ -70,6 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#f8f8f8',
+
   },
   title: {
     fontSize: 22,

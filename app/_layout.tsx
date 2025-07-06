@@ -11,6 +11,7 @@ import Usuarios from './usuarios';
 import ListaUsuarios from './usuarios';
 import ListaAgendamentos from './agendamento';
 import FormularioAgendamento from './criarAgendamento';
+// import EditarUsuario from './editarUsuario';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -51,6 +52,7 @@ export default function RootLayout() {
           component={FormularioAgendamento}
           options={{ headerShown: true, title: 'Criando Agendamento' }}
         />
+
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

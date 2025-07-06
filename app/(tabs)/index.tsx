@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   menuItem: {
-    
+
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
